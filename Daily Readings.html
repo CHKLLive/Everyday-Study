@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> o.o ready to study?</title>
+        <link href="./resources/main_style.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+        <style>
+            #dailies a {
+                display: block;
+                width: 43vw;
+            }
+            .daily-button {
+                border-style: solid;
+                border-radius: 11px;
+                padding: 17px 0 17px 0;
+                margin: 17px 0 17px 0;
+                text-align: center;
+                font-size: 2.3rem;
+            }
+            .daily-button:hover {
+                cursor: pointer;
+            }
+            #ink-bg {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                
+                background-image: 
+                    radial-gradient(circle at 20% -10%, rgba(147, 51, 234, 0.47) 0%, transparent 49%),
+                    radial-gradient(circle at 85% 20%, rgba(236, 72, 153, 0.47) 0%, transparent 47%),
+                    radial-gradient(circle at 50% 110%, rgba(56, 189, 248, 0.43) 0%, transparent 59%);
+                
+                filter: blur(80px);
+            }
+            #ink-bg .dark-mode {
+                background-image: 
+                    radial-gradient(circle at 20% -10%, rgba(147, 51, 234, 0.47) 0%, transparent 49%),
+                    radial-gradient(circle at 85% 20%, rgba(236, 72, 153, 0.43) 0%, transparent 47%),
+                    radial-gradient(circle at 50% 110%, rgba(59, 130, 246, 0.43) 0%, transparent 59%);
+            }
+            a {
+                color: var(--text-light);
+                cursor: default;
+                text-decoration: none;
+            }
+            body.dark-mode div div a {
+                color: var(--text-dark);
+                display: inline
+            }
+            #quotes {
+                width: 43vw;
+                padding-top: 13px;
+                font-size: 1.1em;
+            }
+            #quotes div {
+                background-color: rgba(0, 119, 191, 0.02);
+                border-radius: 15px;
+            }
+            body.dark-mode div div#quotes div {
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+            .quote-desc {
+                font-size: 1.19em;
+                text-decoration: underline;
+                margin-left: 7px;
+            }
+            blockquote {
+                margin: 0px 7px;
+            }
+            blockquote p::before {
+                content: "\201C";
+            }
+            blockquote p::after {
+                content: "\201D";
+            }
+            blockquote + p {
+                text-align: right;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="navbar">
+            <div id="navbar-left" style="margin-right: 13px;">
+                <a href="https://chkllive.github.io/Everyday-Study">
+                    <button id="homepage">
+                        <img src="./img/homepage-light.svg" alt="Everyday Study Homepage">
+                    </button>
+                </a>
+                <a href="https://independenthighschoolslive.github.io/UEC_Textbooks.html">
+                    <button id="independenthighschoolslive">
+                        <img src="./img/open-book-light.svg" alt="Independent High Schools Live Site">
+                    </button>
+                </a>
+            </div>
+            <div id="navbar-right" style="margin-right: 13px;">
+                <button id="modeButton" onclick="toggleMode()">
+                    <img src="./img/sun-light.svg" alt="Dark Mode">
+                </button>
+                <button id="languageButton" onclick="languageOption()">
+                    <img id="language-icon" src="./img/languages-light.svg" alt="Languages" width="36em" height="36em">
+                </button>
+                <div id="language-dropdown" class="language-dropdown">
+                    <a href="#" onclick="changeLanguage('ms-my')">Bahasa Melayu</a>
+                    <a href="#" onclick="changeLanguage('en-gb')">English</a>
+                    <a href="#" onclick="changeLanguage('zh')">正體中文</a>
+                    <a href="#" onclick="changeLanguage('zh-simp')">简体中文</a>
+                </div>
+            </div>
+        </div>
+        <div id="ink-bg"></div>
+        <div id="content">
+            <div id="dailies">
+                <a href="./Daily Readings/Malay" target="_blank">
+                    <div class="daily-button" id="malay-readings">Malay</div>
+                </a>
+                <a href="./Daily Readings/English" target="_blank">
+                    <div class="daily-button" id="english-readings">English</div>
+                </a>
+                <a href="./Daily Readings/Chinese" target="_blank">
+                    <div class="daily-button" id="chinese-readings">Chinese</div>
+                </a>
+            </div>
+            <div id="quotes">
+                <div id="monthly-blockquote-div">
+                    <span class="quote-desc" id="quote-of-the-month-desc">Mutiara kata untuk bulan ini</span>
+                    <blockquote>
+                        <p id="quote-of-the-month-quote">Jangan ambil mudah kepercayaan orang lain.</p>
+                    </blockquote>
+                    <p id="quote-of-the-month-citation">Marina Binti Ibrahim</p>
+                </div>
+                <div id="weekly-blockquote-div">
+                    <span class="quote-desc" id="quote-of-the-week-desc">本週金句</span>
+                    <blockquote>
+                        <p id="quote-of-the-week-quote">千里之行始於足下</p>
+                    </blockquote>
+                    <p id="quote-of-the-week-citation">《道德經》第六十四章</p>
+                </div>
+            </div>
+        </div>
+        <script>
+            let mode = "light"
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+            if (document.cookie.includes('mode')) {
+                mode = getCookie('mode');
+            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                mode = "dark";
+            } else {
+                document.cookie = "mode=light;";
+            }
+            function setMode(mode) {
+                if (mode == "dark") {
+                    document.body.classList.add("dark-mode");
+                    document.getElementById("navbar").classList.add('dark-mode');
+                    document.querySelector('#homepage img').src = "./img/homepage-dark.svg";
+                    document.querySelector('#independenthighschoolslive img').src = "./img/open-book-dark.svg";
+                    document.querySelector('#modeButton img').src = "./img/moon-dark.svg";
+                    document.querySelector('#languageButton img').src = "./img/languages-dark.svg";
+                    document.getElementById("ink-bg").classList.add('dark-mode')
+
+                } else {
+                    document.body.classList.remove("dark-mode");
+                    document.getElementById("navbar").classList.remove('dark-mode');
+                    document.querySelector('#homepage img').src = "./img/homepage-light.svg";
+                    document.querySelector('#independenthighschoolslive img').src = "./img/open-book-light.svg";
+                    document.querySelector('#modeButton img').src = "./img/sun-light.svg";
+                    document.querySelector('#languageButton img').src = "./img/languages-light.svg";
+                    document.getElementById("ink-bg").classList.remove('dark-mode')
+                }
+            }
+            setMode(mode);
+            function toggleMode() {
+                if (mode == "light") {
+                    mode = "dark";
+                    setMode("dark");
+                    document.cookie = "mode=dark; expires=Fri, 31 Dec 9999 23:59:59 GMT; sameSite=Strict;";
+                } else {
+                    mode = "light";
+                    setMode("light");
+                    document.cookie = "mode=light; expires=Fri, 31 Dec 9999 23:59:59 GMT; sameSite=Strict;";
+                }
+            }
+            function languageOption() {
+                document.getElementById('language-dropdown').classList.toggle('show');
+            }
+
+            let page_language = "zh";
+            let contentJSON = {}
+            let quotesJSON = {}
+            if (document.cookie.includes('language')) {
+                page_language = getCookie('language');
+            }
+            function changeLanguage(language) {
+                document.cookie = `language=${language}; expires=Fri, 31 Dec 9999 23:59:59 GMT; sameSite=Strict;`;
+                if (language === page_language) return;
+                page_language = language;
+                loadPageWithLanguage(language);
+            }
+            async function loadPageWithLanguage(language) {
+                const scrollPosition = window.scrollY;
+                const content = contentJSON[language];
+                const quotesInfo = quotesJSON[language]
+                document.getElementById('malay-readings').textContent = content.malay_readings;
+                document.getElementById('english-readings').textContent = content.english_readings;
+                document.getElementById('chinese-readings').textContent = content.chinese_readings;
+                document.getElementById('quote-of-the-month-desc').textContent = content["quote-of-the-month"]
+                document.getElementById('quote-of-the-week-desc').textContent = content["quote-of-the-week"]
+                let now = new Date();
+                let year = now.getFullYear();
+                let month = now.getMonth() + 1
+                if (month < 10) month = "0"+month
+                
+                if (quotesInfo?.monthly_quote && quotesInfo?.monthly_quote?.[`${year}${month}`]) {
+                    document.getElementById('quote-of-the-month-quote').innerHTML = quotesInfo.monthly_quote[`${year}${month}`]["quote"]
+                    document.getElementById('quote-of-the-month-citation').innerHTML = quotesInfo.monthly_quote[`${year}${month}`]["citation"];
+                }
+                else document.getElementById('quote-of-the-month-citation').innerHTML = quotesInfo.monthly_quote["202607"];
+                if (quotesInfo?.weekly_quote && quotesInfo.weekly_quote?.[`${year}${month}`]) {
+                    quotesArray =  quotesInfo.weekly_quote[`${year}${month}`]
+                    document.getElementById('quote-of-the-week-quote')
+                            .innerHTML = quotesArray[quotesArray.length - 1]["quote"]
+                    document.getElementById('quote-of-the-week-citation')
+                            .innerHTML = quotesArray[quotesArray.length - 1]["citation"];
+                }
+                else document.getElementById('quote-of-the-week-citation').innerHTML = quotesInfo.weekly_quote["202607"]["citation"];
+            }
+            window.addEventListener('load', async () => {
+                contentJSON = await (await fetch('../main/content.json')).json();
+                quotesJSON = await (await fetch('../main/quotes.json')).json();
+                loadPageWithLanguage(page_language);
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> o.o ready to study?</title>
+        <link href="../resources/main_style.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <link rel="stylesheet" type="text/css" href="../resources/flatpickr_light.css" id="flatpickr-theme">
+        <style>
+            @font-face {
+                font-family: Iansui;
+                src: url(https://fonts.gstatic.com/s/iansui/v13/w8gbH2UoTuUp5bOaiCGF1FZNv-GRc6tIAkQ0Y1HIQcc3vmVANDpE_wfqDYl7DQHyKVY.122.woff2) format('woff2');
+                unicode-range: U+771F;
+            }
+            @font-face {
+                font-family: LXGWWenKaiGB;
+                src: url(../resources/LXGWWenKaiGB-Regular.ttf);
+            }
+
+            #tools {
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
+                justify-content: space-between;
+                align-items: center;
+                width: 79vw;
+                margin-top: 11px;
+            }
+            input {
+                background-color: rgba(255, 255, 255, 0);
+                border-style: solid;
+                border-radius: 11px;
+                color: var(--text-light);
+                text-align: center;
+            }
+            #variant-toggle {
+                display: flex;
+                flex: 1;
+                justify-content: flex-end;
+                font-size: 0.95rem;
+                user-select: none;
+            }
+            #variant-toggle span {
+                padding: 4px 12px;
+                border: 1px solid #765417;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
+            body.dark-mode #variant-toggle span {
+                border-color: #eabc72;
+            }
+            #variant-toggle span:first-child {
+                border-radius: 8px 0 0 8px;
+                border-right: none;
+            }
+            #variant-toggle span:last-child {
+                border-radius: 0 8px 8px 0;
+            }
+
+            #variant-toggle span.active {
+                background-color: #a3bcf6;
+                font-weight: bold;
+            }
+            body.dark-mode #variant-toggle span.active {
+                background-color: #6699ee;
+            }
+            body.dark-mode input{
+                color: var(--text-dark);
+            }
+            #daily {
+                width: 79vw;
+                border-style: solid;
+                border-color: rgba(50, 210, 114, 0.43);
+                border-radius: 17px;
+                margin-top: 23px;
+                margin-bottom: 23px;
+            }
+            #daily-content {
+                margin-left: 13px;
+            }
+            #daily-content.simplified * {
+                font-family: 'Iansui', "LXGWWenKaiGB", Quicksand, "LXGW WenKai TC";
+            }
+            #ink-bg {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                
+                background-image: 
+                    radial-gradient(circle at 20% -10%, rgba(147, 51, 234, 0.47) 0%, transparent 49%),
+                    radial-gradient(circle at 85% 20%, rgba(236, 72, 153, 0.47) 0%, transparent 47%),
+                    radial-gradient(circle at 50% 110%, rgba(56, 189, 248, 0.43) 0%, transparent 59%);
+                
+                filter: blur(80px);
+            }
+            #ink-bg .dark-mode {
+                background-image: 
+                    radial-gradient(circle at 20% -10%, rgba(147, 51, 234, 0.47) 0%, transparent 49%),
+                    radial-gradient(circle at 85% 20%, rgba(236, 72, 153, 0.43) 0%, transparent 47%),
+                    radial-gradient(circle at 50% 110%, rgba(59, 130, 246, 0.43) 0%, transparent 59%);
+            }
+            a {
+                color: var(--text-light);
+                text-decoration: none;
+            }
+            body.dark-mode div div a {
+                color: var(--text-dark);
+                display: inline
+            }
+            #quotes {
+                width: 43vw;
+                padding-top: 13px;
+                font-size: 1.1em;
+                display: grid;
+                justify-content: center;
+                grid-template-columns: repeat(1, minmax(0, 1fr)); 
+            }
+            #quotes div {
+                background-color: rgba(0, 119, 191, 0.02);
+                border-radius: 15px;
+                margin-bottom: 13px;
+            }
+            body.dark-mode div div#quotes div {
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+            .quote-desc {
+                font-size: 1.19em;
+                text-decoration: underline;
+                margin-left: 7px;
+            }
+            blockquote {
+                margin: 0px 7px;
+            }
+            blockquote p::before {
+                content: "\201C";
+            }
+            blockquote p::after {
+                content: "\201D";
+            }
+            blockquote + p {
+                text-align: right;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="navbar">
+            <div id="navbar-left" style="margin-right: 13px;">
+                <a href="https://chkllive.github.io/Everyday-Study">
+                    <button id="homepage">
+                        <img src="../img/homepage-light.svg" alt="Everyday Study Homepage">
+                    </button>
+                </a>
+                <a href="https://independenthighschoolslive.github.io/UEC_Textbooks.html">
+                    <button id="independenthighschoolslive">
+                        <img src="../img/open-book-light.svg" alt="Independent High Schools Live Site">
+                    </button>
+                </a>
+            </div>
+            <div id="navbar-right" style="margin-right: 13px;">
+                <button id="modeButton" onclick="toggleMode()">
+                    <img src="../img/sun-light.svg" alt="Click for Dark Mode">
+                </button>
+                <button id="languageButton" onclick="languageOption()">
+                    <img id="language-icon" src="../img/languages-light.svg" alt="Languages" width="36em" height="36em">
+                </button>
+                <div id="language-dropdown" class="language-dropdown">
+                    <a href="#" onclick="changeLanguage('ms-my')">Bahasa Melayu</a>
+                    <a href="#" onclick="changeLanguage('en-gb')">English</a>
+                    <a href="#" onclick="changeLanguage('zh')">正體中文</a>
+                    <a href="#" onclick="changeLanguage('zh-simp')">简体中文</a>
+                </div>
+            </div>
+        </div>
+        <div id="ink-bg"></div>
+        <div id="content">
+            <div id="tools">
+                <div></div>
+                <div id="date-selector" style="display: flex; justify-content: center;">
+                    <label id="date-selector-label" for="date-selector-calendar">Please select</label>
+                    <input id="date-selector-calendar" type="text" size="11" style="margin-left: 7px;">
+                </div>
+                <div id="tools-at-right" style="display: flex; align-items: center;">
+                    <div id="variant-toggle">
+                        <span id="button-trad" class="active" onclick="toggleDailyContentVariant('zh')">繁</span>
+                        <span id="button-simp" onclick="toggleDailyContentVariant('zh-simp')">简</span>
+                    </div>
+                    <div id="information" style="margin-left: 5px;" onclick="">
+                        ⓘ
+                    </div>
+                </div>
+            </div>
+            <div id="daily">
+                <div id="daily-content"></div>
+            </div>
+            <div id="quotes">
+                <div id="monthly-blockquote-div">
+                    <span class="quote-desc" id="quote-of-the-month-desc">Mutiara kata untuk bulan ini</span>
+                    <blockquote>
+                        <p id="quote-of-the-month-quote">Jangan ambil mudah kepercayaan orang lain.</p>
+                    </blockquote>
+                    <p id="quote-of-the-month-citation">Marina Binti Ibrahim</p>
+                </div>
+                <div id="weekly-blockquote-div">
+                    <span class="quote-desc" id="quote-of-the-week-desc">本週金句</span>
+                    <blockquote>
+                        <p id="quote-of-the-week-quote">千里之行始於足下</p>
+                    </blockquote>
+                    <p id="quote-of-the-week-citation">《道德經》第六十四章</p>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+        <script>
+            let mode = "light"
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+            if (document.cookie.includes('mode')) {
+                mode = getCookie('mode');
+            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                mode = "dark";
+            } else {
+                document.cookie = "mode=light; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT; sameSite=Strict;";
+            }
+            function setMode(mode) {
+                if (mode == "dark") {
+                    document.body.classList.add("dark-mode");
+                    document.getElementById("navbar").classList.add('dark-mode');
+                    document.querySelector('#homepage img').src = "../img/homepage-dark.svg";
+                    document.querySelector('#independenthighschoolslive img').src = "../img/open-book-dark.svg";
+                    document.querySelector('#modeButton img').src = "../img/moon-dark.svg";
+                    document.querySelector('#languageButton img').src = "../img/languages-dark.svg";
+                    document.getElementById("ink-bg").classList.add('dark-mode')
+                    document.getElementById("flatpickr-theme").setAttribute("href", "../resources/flatpickr_dark.css")
+
+                } else {
+                    document.body.classList.remove("dark-mode");
+                    document.getElementById("navbar").classList.remove('dark-mode');
+                    document.querySelector('#homepage img').src = "../img/homepage-light.svg";
+                    document.querySelector('#independenthighschoolslive img').src = "../img/open-book-light.svg";
+                    document.querySelector('#modeButton img').src = "../img/sun-light.svg";
+                    document.querySelector('#languageButton img').src = "../img/languages-light.svg";
+                    document.getElementById("ink-bg").classList.remove('dark-mode')
+                    document.getElementById("flatpickr-theme").setAttribute("href", "../resources/flatpickr_light.css")
+                }
+            }
+            setMode(mode);
+            function toggleMode() {
+                if (mode == "light") {
+                    mode = "dark";
+                    setMode("dark");
+                    document.cookie = "mode=dark; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT; sameSite=Strict;";
+                } else {
+                    mode = "light";
+                    setMode("light");
+                    document.cookie = "mode=light; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT; sameSite=Strict;";
+                }
+            }
+            function languageOption() {
+                document.getElementById('language-dropdown').classList.toggle('show');
+            }
+
+            let page_language = "zh";
+            console.log(page_language)
+            let contentJSON = {}
+            let quotesJSON = {}
+            if (document.cookie.includes('language')) {
+                page_language = getCookie('language');
+                console.log(page_language)
+            }
+            function changeLanguage(language) {
+                document.cookie = `language=${language}; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT; sameSite=Strict;`;
+                if (language === page_language) return;
+                page_language = language;
+                loadPageWithLanguage(language);
+            }
+            async function loadPageWithLanguage(language) {
+                const scrollPosition = window.scrollY;
+                const content = contentJSON[language];
+                const quotesInfo = quotesJSON[language]
+
+                document.getElementById('quote-of-the-month-desc').textContent = content["quote-of-the-month"]
+                document.getElementById('quote-of-the-week-desc').textContent = content["quote-of-the-week"]
+                document.getElementById('date-selector-label').textContent = content["change_date"]
+                let now = new Date();
+                let year = now.getFullYear();
+                let month = now.getMonth() + 1
+                if (month < 10) month = "0"+month
+                
+                if (quotesInfo?.monthly_quote && quotesInfo?.monthly_quote?.[`${year}${month}`]) {
+                    document.getElementById('quote-of-the-month-quote').innerHTML = quotesInfo.monthly_quote[`${year}${month}`]["quote"]
+                    document.getElementById('quote-of-the-month-citation').innerHTML = quotesInfo.monthly_quote[`${year}${month}`]["citation"];
+                }
+                else document.getElementById('quote-of-the-month-citation').innerHTML = quotesInfo.monthly_quote["202607"];
+                if (quotesInfo?.weekly_quote && quotesInfo.weekly_quote?.[`${year}${month}`]) {
+                    quotesArray =  quotesInfo.weekly_quote[`${year}${month}`]
+                    document.getElementById('quote-of-the-week-quote')
+                            .innerHTML = quotesArray[quotesArray.length - 1]["quote"]
+                    document.getElementById('quote-of-the-week-citation')
+                            .innerHTML = quotesArray[quotesArray.length - 1]["citation"];
+                }
+                else document.getElementById('quote-of-the-week-citation').innerHTML = quotesInfo.weekly_quote["202607"]["citation"];
+            }
+            let daily_content_language = "zh"
+            function toggleDailyContentVariant(variant) {
+                daily_content_language = variant
+                document.getElementById('button-trad').classList.remove('active');
+                document.getElementById('button-simp').classList.remove('active');
+                if (variant === 'zh') {
+                    document.getElementById('button-trad').classList.add('active');
+                    document.getElementById('daily-content').classList.remove("simplified")
+                } else {
+                    document.getElementById('button-simp').classList.add('active');
+                    document.getElementById('daily-content').classList.add("simplified")
+
+                }
+                load_daily_article()
+            }
+            window.addEventListener('load', async () => {
+                contentJSON = await (await fetch('../main/content.json')).json();
+                quotesJSON = await (await fetch('../main/quotes.json')).json();
+                loadPageWithLanguage(page_language);
+                if (page_language === 'zh-simp') {
+                    document.getElementById('button-trad').classList.remove('active');
+                    document.getElementById('button-simp').classList.add('active');
+                    document.getElementById('daily-content').classList.add('simplified')
+                }
+            });
+        </script>
+        <script>
+            const daily_article = document.getElementById('daily-content')
+            let date_array;
+            flatpickr("#date-selector-calendar", {
+                dateFormat: "d-m-Y",
+                minDate: "08-07-2026",
+                maxDate: "today",
+                defaultDate: "today",
+                onChange: async function(selectedDates, dateStr, instance) {
+                    date_array = dateStr.split('-');
+                    load_daily_article();
+                },
+                onReady: async function(selectedDates, dateStr, instance) {
+                    console.log("cv")
+                    console.log(page_language)
+                    date_array = dateStr.split('-');
+                    if (page_language.startsWith("zh-")) daily_content_language = "zh-simp"
+                    load_daily_article();
+                }
+            });
+            async function load_daily_article () {
+                try {
+                    const daily_content_file_res = await 
+                        fetch(`./Chinese/${date_array[2]}/${date_array[1]}/${date_array[2]}${date_array[1]}${date_array[0]}_${daily_content_language}.md`);
+                    const daily_content_file = await daily_content_file_res.text();
+                    if (!daily_content_file_res.ok) throw new Error('Failed to fetch content markdown file.');
+                    daily_article.innerHTML = marked.parse(daily_content_file)
+                } catch (error) {
+                    console.log(error);
+                    if (daily_content_language == "zh") daily_article.innerHTML = marked.parse("## 無法取得當日的閱讀內容。\n\n請稍後再嘗試。")
+                    else  daily_article.innerHTML = marked.parse("## 无法取得当日的阅读内容。\n\n请稍后再尝试。")
+                }
+            }
+        </script>
+    </body>
+</html>

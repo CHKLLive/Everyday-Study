@@ -1,0 +1,46 @@
+{
+    "ms-my": {
+        "daily_readings": "Bacaan Harian",
+        "daily_mathematics": "Matematik Harian",
+        "daily_vocabularies": "Kosa Kata Harian",
+        "quote-of-the-week": "Mutiara kata untuk minggu ini",
+        "quote-of-the-month": "Mutiara kata untuk bulan ini",
+        "change_date": "Perentasan masa",
+        "malay_readings": "Bahasa Melayu",
+        "english_readings": "Bahasa Inggeris",
+        "chinese_readings": "Bahasa Cina"
+    },
+    "en-gb": {
+        "daily_readings": "Daily Readings",
+        "daily_mathematics": "Daily Mathematics",
+        "daily_vocabularies": "Daily Vocabularies",
+        "quote-of-the-week": "Quote of the week",
+        "quote-of-the-month": "Quote of the month",
+        "change_date": "Time travel",
+        "malay_readings": "Malay",
+        "english_readings": "English",
+        "chinese_readings": "Chinese"
+    },
+    "zh": {
+        "daily_readings": "每日閱讀",
+        "daily_mathematics": "每日數學",
+        "daily_vocabularies": "每日詞彙",
+        "quote-of-the-week": "本週金句",
+        "quote-of-the-month": "本月金句",
+        "change_date": "時光穿梭",
+        "malay_readings": "馬來語",
+        "english_readings": "英語",
+        "chinese_readings": "華語"
+    },
+    "zh-simp": {
+        "daily_readings": "每日阅读",
+        "daily_mathematics": "每日数学",
+        "daily_vocabularies": "每日词汇",
+        "quote-of-the-week": "本周金句",
+        "quote-of-the-month": "本月金句",
+        "change_date": "时光穿梭",
+        "malay_readings": "马来语",
+        "english_readings": "英语",
+        "chinese_readings": "华语"
+    }
+}
