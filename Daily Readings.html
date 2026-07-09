@@ -234,8 +234,8 @@
                 else document.getElementById('quote-of-the-week-citation').innerHTML = quotesInfo.weekly_quote["202607"]["citation"];
             }
             window.addEventListener('load', async () => {
-                contentJSON = await (await fetch('../main/content.json')).json();
-                quotesJSON = await (await fetch('../main/quotes.json')).json();
+                contentJSON = await (await fetch('./main/content.json')).json();
+                quotesJSON = await (await fetch('./main/quotes.json')).json();
                 loadPageWithLanguage(page_language);
             });
         </script>
