@@ -28,13 +28,15 @@
                 width: 79vw;
                 margin-top: 11px;
             }
-            input {
+            select, input {
                 background-color: rgba(255, 255, 255, 0);
                 border-style: solid;
                 border-radius: 11px;
                 color: var(--text-light);
                 text-align: center;
+                font-family: Quicksand, "LXGW WenKai TC";
             }
+            /* #information, */
             #variant-toggle {
                 display: flex;
                 flex: 1;
@@ -66,7 +68,10 @@
             body.dark-mode #variant-toggle span.active {
                 background-color: #6699ee;
             }
-            body.dark-mode input{
+            #information {
+                cursor: pointer;
+            }
+            body.dark-mode select, body.dark-mode input{
                 color: var(--text-dark);
             }
             #daily {
@@ -145,6 +150,46 @@
             blockquote + p {
                 text-align: right;
             }
+            #popup {
+                display: none;
+                position: fixed;
+                z-index: 23;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0, 0, 0, 0.37);
+            }
+            #popup-information {
+                background-color: rgba(255, 255, 255, 0.89);
+                backdrop-filter: blur(3px);
+                margin: 11% auto 11% auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 41vw;
+                height: 31vh;
+                border-radius: 15px;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+            }
+            body.dark-mode #popup-information {
+                background-color: rgba(0, 0, 0, 0.59);
+            }
+            #popup-header {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+            }
+            #popup-title {
+                margin: 0;
+                font-size: 1.7rem;
+                line-height: 1.1;
+            }
+            #popup-close {
+                cursor: pointer;
+                font-size: 0.89rem;
+                user-select: none;
+            }
         </style>
     </head>
     <body>
@@ -179,7 +224,14 @@
         <div id="ink-bg"></div>
         <div id="content">
             <div id="tools">
-                <div></div>
+                <div id="go_to_read">
+                    <label for="go_to_read-dropdown" id="label_for_go_to_read_dropdown"></label>
+                    <select id="go_to_read_dropdown" onchange="changeLanguageofReading(this.value)">
+                        <option value="ms" id="read_ms"></option>
+                        <option value="en" id="read_en"></option>
+                        <option value="zh" id="read_zh" selected></option>
+                    </select>
+                </div>
                 <div id="date-selector" style="display: flex; justify-content: center;">
                     <label id="date-selector-label" for="date-selector-calendar">Please select</label>
                     <input id="date-selector-calendar" type="text" size="11" style="margin-left: 7px;">
@@ -189,7 +241,7 @@
                         <span id="button-trad" class="active" onclick="toggleDailyContentVariant('zh')">繁</span>
                         <span id="button-simp" onclick="toggleDailyContentVariant('zh-simp')">简</span>
                     </div>
-                    <div id="information" style="margin-left: 5px;" onclick="">
+                    <div id="information" style="margin-left: 5px;" onclick="show_information()">
                         ⓘ
                     </div>
                 </div>
@@ -214,9 +266,28 @@
                 </div>
             </div>
         </div>
+        <div id="popup">
+            <div id="popup-information">
+                <div id="popup-header">
+                    <h3 id="popup-title"></h3>
+                    <div id="popup-close" onclick="close_information()">╳</div>
+                </div>
+                <div id="popup-content"></div>
+            </div>
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
         <script>
+            window.onclick = function(event) {
+                const dropdown = document.getElementById("language-dropdown");
+                if (!event.target.id.startsWith("language-") && !dropdown.contains(event.target)) {
+                    dropdown.classList.remove('show');
+                }
+                const popup = document.getElementById('popup');
+                if (event.target === popup) {
+                    close_information();
+                }
+            }
             let mode = "light"
             function getCookie(name) {
                 const value = `; ${document.cookie}`;
@@ -269,12 +340,10 @@
             }
 
             let page_language = "zh";
-            console.log(page_language)
             let contentJSON = {}
             let quotesJSON = {}
             if (document.cookie.includes('language')) {
                 page_language = getCookie('language');
-                console.log(page_language)
             }
             function changeLanguage(language) {
                 document.cookie = `language=${language}; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT; sameSite=Strict;`;
@@ -289,7 +358,12 @@
 
                 document.getElementById('quote-of-the-month-desc').textContent = content["quote-of-the-month"]
                 document.getElementById('quote-of-the-week-desc').textContent = content["quote-of-the-week"]
+                document.getElementById('label_for_go_to_read_dropdown').textContent = content["label_for_go_to_read_dropdown"]
+                document.getElementById('read_ms').textContent = content["malay_readings"]
+                document.getElementById('read_en').textContent = content["english_readings"]
+                document.getElementById('read_zh').textContent = content["chinese_readings"]
                 document.getElementById('date-selector-label').textContent = content["change_date"]
+                document.getElementById('popup-title').textContent = content["educational_purpose"]
                 let now = new Date();
                 let year = now.getFullYear();
                 let month = now.getMonth() + 1
@@ -348,10 +422,7 @@
                     load_daily_article();
                 },
                 onReady: async function(selectedDates, dateStr, instance) {
-                    console.log("cv")
-                    console.log(page_language)
                     date_array = dateStr.split('-');
-                    if (page_language.startsWith("zh-")) daily_content_language = "zh-simp"
                     load_daily_article();
                 }
             });
@@ -367,6 +438,33 @@
                     if (daily_content_language == "zh") daily_article.innerHTML = marked.parse("## 無法取得當日的閱讀內容。\n\n請稍後再嘗試。")
                     else  daily_article.innerHTML = marked.parse("## 无法取得当日的阅读内容。\n\n请稍后再尝试。")
                 }
+            }
+        </script>
+        <script>
+            function changeLanguageofReading(language) {
+                let link;
+                switch (language) {
+                    case "ms":
+                        link = "./Malay.html"
+                        break;
+                    case "en":
+                        link = "./English.html"
+                        break;
+                    case "zh":
+                        link = "./Chinese.html"
+                        break;
+                    default:
+                        link = "../index.html"
+                        break;
+                }
+                const page_to_go = new URL(link, window.location.href).href;
+                if (window.location.href !== page_to_go) window.location.href = page_to_go;
+            }
+            function show_information() {
+                document.getElementById('popup').style.display = "block";
+            }
+            function close_information() {
+                document.getElementById('popup').style.display = "none";
             }
         </script>
     </body>
