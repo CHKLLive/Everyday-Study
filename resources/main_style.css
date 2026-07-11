@@ -65,19 +65,21 @@ body.dark-mode {
     top: calc(100% + 10px);
     backdrop-filter: blur(1.1px);
 }
-.language-dropdown a {
+.language-dropdown div {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    cursor: pointer;
+    user-select: none;
 }
-.language-dropdown a:hover {
+.language-dropdown div:hover {
     background-color: #f1f1f1;
 }
-body.dark-mode .language-dropdown a {
+body.dark-mode .language-dropdown div {
     color: white;
 }
-body.dark-mode .language-dropdown a:hover {
+body.dark-mode .language-dropdown div:hover {
     background-color: black;
 }
 #language-dropdown.show {
