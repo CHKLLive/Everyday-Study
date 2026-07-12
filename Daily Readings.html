@@ -116,14 +116,17 @@
         <div id="ink-bg"></div>
         <div id="content">
             <div id="dailies">
-                <a href="./Daily Readings/Malay" target="_blank">
+                <a href="./Daily Readings/Malay">
                     <div class="daily-button" id="malay-readings">Malay</div>
                 </a>
-                <a href="./Daily Readings/English" target="_blank">
+                <a href="./Daily Readings/English">
                     <div class="daily-button" id="english-readings">English</div>
                 </a>
-                <a href="./Daily Readings/Chinese" target="_blank">
+                <a href="./Daily Readings/Chinese">
                     <div class="daily-button" id="chinese-readings">Chinese</div>
+                </a>
+                <a href="" style="color: grey">
+                    <div class="daily-button" id="classical-chinese-readings">Classical Chinese</div>
                 </a>
             </div>
             <div id="quotes">
@@ -212,6 +215,7 @@
                 document.getElementById('malay-readings').textContent = content.malay_readings;
                 document.getElementById('english-readings').textContent = content.english_readings;
                 document.getElementById('chinese-readings').textContent = content.chinese_readings;
+                document.getElementById('classical-chinese-readings').textContent = content.classical_chinese_readings;
                 document.getElementById('quote-of-the-month-desc').textContent = content["quote-of-the-month"]
                 document.getElementById('quote-of-the-week-desc').textContent = content["quote-of-the-week"]
                 let now = new Date();

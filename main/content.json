@@ -9,6 +9,7 @@
         "malay_readings": "Bahasa Melayu",
         "english_readings": "Bahasa Inggeris",
         "chinese_readings": "Bahasa Cina",
+        "classical_chinese_readings": "Bahasa Cina Klasik",
         "label_for_go_to_read_dropdown": "Bacaan bahasa lain: ",
         "educational_purpose": "Segala bahan yang disimpan adalah untuk tujuan pembelajaran sahaja."
     },
@@ -22,6 +23,7 @@
         "malay_readings": "Malay",
         "english_readings": "English",
         "chinese_readings": "Chinese",
+        "classical_chinese_readings": "Classical Chinese",
         "label_for_go_to_read_dropdown": "Readings in other languages: ",
         "educational_purpose": "All materials used are saved for the purpose of studying only."
     },
@@ -35,6 +37,7 @@
         "malay_readings": "國語",
         "english_readings": "英語",
         "chinese_readings": "華語",
+        "classical_chinese_readings": "文言",
         "label_for_go_to_read_dropdown": "閱讀其他語言: ",
         "educational_purpose": "所涉及的一切內容僅為學習目的而存放。"
     },
@@ -48,6 +51,7 @@
         "malay_readings": "国语",
         "english_readings": "英语",
         "chinese_readings": "华语",
+        "classical_chinese_readings": "文言",
         "label_for_go_to_read_dropdown": "阅读其他语言: ",
         "educational_purpose": "所涉及的一切内容仅为学习目的而存放。"
     }
