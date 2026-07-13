@@ -144,6 +144,12 @@
             </div>
         </div>
         <script>
+            window.onclick = function(event) {
+                const dropdown = document.getElementById("language-dropdown");
+                if (!event.target.id.startsWith("language-") && !dropdown.contains(event.target)) {
+                    dropdown.classList.remove('show');
+                }
+            }
             let mode = "light"
             function getCookie(name) {
                 const value = `; ${document.cookie}`;
