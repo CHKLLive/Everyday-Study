@@ -4,6 +4,10 @@
             "202607": {
                 "quote": "Jangan ambil mudah kepercayaan orang lain.",
                 "citation": "Marina Ibrahim <span style=\"font-style: italic;\">menulis di <a href=\"https://www.facebook.com/MarinaIbrahim03/posts/2467998067013766\" style=\"cursor: pointer;\">Facebook</a></span>"
+            },
+            "202608": {
+                "quote": "Past time is finite, future time is infinite.",
+                "citation": "Edwin Powell Hubble"
             }
         },
         "weekly_quote": {
@@ -18,7 +22,13 @@
             {
                 "quote": "Mengelak peperangan adalah lebih bijaksana daripada memenanginya.",
                 "citation": "Mutiara Kata Sasterawan Negara Edisi Kedua"
-            }]
+            }],
+            "202608": [
+                {
+                    "quote": "每個人都與眾不同，與眾相同是一種幻象。",
+                    "citation": "Audrey Tang"
+                }
+            ]
         }
     },
     "en-gb": {
@@ -26,6 +36,10 @@
             "202607": {
                 "quote": "Jangan ambil mudah kepercayaan orang lain.",
                 "citation": "Marina Ibrahim <span style=\"font-style: italic;\">wrote on <a href=\"https://www.facebook.com/MarinaIbrahim03/posts/2467998067013766\" style=\"cursor: pointer;\">Facebook</a></span>"
+            },
+            "202608": {
+                "quote": "Past time is finite, future time is infinite.",
+                "citation": "Edwin Powell Hubble"
             }
         },
         "weekly_quote": {
@@ -40,7 +54,13 @@
             {
                 "quote": "Mengelak peperangan adalah lebih bijaksana daripada memenanginya.",
                 "citation": "Mutiara Kata Sasterawan Negara Edisi Kedua (National Laureate's Pearls of Wisdom, Second Edition)"
-            }]
+            }],
+            "202608": [
+                {
+                    "quote": "每個人都與眾不同，與眾相同是一種幻象。",
+                    "citation": "Audrey Tang"
+                }
+            ]
         }
     },
     "zh": {
@@ -48,6 +68,10 @@
             "202607": {
                 "quote": "Jangan ambil mudah kepercayaan orang lain.",
                 "citation": "瑪麗娜・依布拉欣 <span style=\"font-style: italic;\">於 <a href=\"https://www.facebook.com/MarinaIbrahim03/posts/2467998067013766\" style=\"cursor: pointer;\">Facebook 寫道</a></span>"
+            },
+            "202608": {
+                "quote": "Past time is finite, future time is infinite.",
+                "citation": "愛德文·鮑威爾·哈勃"
             }
         },
         "weekly_quote": {
@@ -62,7 +86,13 @@
             {
                 "quote": "Mengelak peperangan adalah lebih bijaksana daripada memenanginya.",
                 "citation": "Mutiara Kata Sasterawan Negara Edisi Kedua (國家文學家語錄第二版)"
-            }]
+            }],
+            "202608": [
+                {
+                    "quote": "每個人都與眾不同，與眾相同是一種幻象。",
+                    "citation": "唐鳳"
+                }
+            ]
         }
     },
     "zh-simp": {
@@ -70,6 +100,10 @@
             "202607": {
                 "quote": "Jangan ambil mudah kepercayaan orang lain.",
                 "citation": "玛丽娜・依布拉欣 <span style=\"font-style: italic;\">于 <a href=\"https://www.facebook.com/MarinaIbrahim03/posts/2467998067013766\" style=\"cursor: pointer;\">Facebook 写道</a></span>"
+            },
+            "202608": {
+                "quote": "Past time is finite, future time is infinite.",
+                "citation": "爱德文·鲍威尔·哈勃"
             }
         },
         "weekly_quote": {
@@ -84,7 +118,13 @@
             {
                 "quote": "Mengelak peperangan adalah lebih bijaksana daripada memenanginya.",
                 "citation": "Mutiara Kata Sasterawan Negara Edisi Kedua (国家文学家语录第二版)"
-            }]
+            }],
+            "202608": [
+                {
+                    "quote": "每个人都与众不同，与众相同是一种幻象。",
+                    "citation": "唐凤"
+                }
+            ]
         }
     }
 }
